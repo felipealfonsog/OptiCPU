@@ -3,41 +3,97 @@
 #include <unistd.h>
 #include <sys/time.h>
 #include <sys/resource.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include <signal.h>
+#include <string.h>
 
-// Function to daemonize the process
-void daemonize() {
-    // Fork off the parent process
-    pid_t pid = fork();
-    if (pid < 0) {
-        exit(EXIT_FAILURE);
+// Function to optimize CPU usage
+void optimize_cpu() {
+    // Set process priority to optimize CPU usage
+    setpriority(PRIO_PROCESS, 0, -10); // Set priority to -10
+
+    // Check CPU load and adjust CPU frequency dynamically (requires appropriate permissions)
+    // Add logic to monitor CPU load and adjust frequency if needed
+    FILE* fp = popen("uptime | awk -F'[a-z]:' '{print $2}'", "r");
+    if (fp != NULL) {
+        char loadavg[256];
+        fgets(loadavg, sizeof(loadavg), fp);
+        pclose(fp);
+        
+        float load = atof(loadavg);
+        if (load > 2.0) {
+            system("cpupower frequency-set -g powersave");
+        } else {
+            system("cpupower frequency-set -g performance");
+        }
     }
-    // If we got a good PID, then we can exit the parent process
-    if (pid > 0) {
-        exit(EXIT_SUCCESS);
+}
+
+// Function to optimize memory usage
+void optimize_memory() {
+    // Check available memory and swap usage
+    // Add logic to monitor memory usage and adjust settings if needed
+    FILE* fp = popen("free -m | awk 'NR==2 {print $3}'", "r");
+    if (fp != NULL) {
+        char memused[256];
+        fgets(memused, sizeof(memused), fp);
+        pclose(fp);
+        
+        int used = atoi(memused);
+        if (used > 75) {
+            system("sysctl vm.swappiness=10");
+        }
     }
+}
 
-    // Change the file mode mask
-    umask(0);
-
-    // Create a new SID for the child process
-    pid_t sid = setsid();
-    if (sid < 0) {
-        exit(EXIT_FAILURE);
+// Function to optimize disk I/O
+void optimize_disk_io() {
+    // Check disk I/O activity and adjust disk scheduler for better performance
+    // Add logic to monitor disk I/O activity and adjust settings if needed
+    FILE* fp = popen("iostat -c | awk 'NR==4 {print $2}'", "r");
+    if (fp != NULL) {
+        char diskutil[256];
+        fgets(diskutil, sizeof(diskutil), fp);
+        pclose(fp);
+        
+        int util = atoi(diskutil);
+        if (util > 50) {
+            system("echo deadline > /sys/block/sda/queue/scheduler");
+        }
     }
+}
 
-    // Change the current working directory
-    if ((chdir("/")) < 0) {
-        exit(EXIT_FAILURE);
+// Function to optimize network activity
+void optimize_network() {
+    // Check network activity and optimize network settings for better performance
+    // Add logic to monitor network activity and adjust settings if needed
+    FILE* fp = popen("sar -n DEV 1 1 | grep Average | awk '{print $6}'", "r");
+    if (fp != NULL) {
+        char netutil[256];
+        fgets(netutil, sizeof(netutil), fp);
+        pclose(fp);
+        
+        int util = atoi(netutil);
+        if (util > 10) {
+            system("sysctl -w net.core.netdev_max_backlog=30000");
+        }
     }
+}
 
-    // Close stdin, stdout, stderr
-    close(STDIN_FILENO);
-    close(STDOUT_FILENO);
-    close(STDERR_FILENO);
+// Function to optimize overall system resources
+void optimize_system() {
+    // Optimize CPU usage
+    optimize_cpu();
+
+    // Optimize memory usage
+    optimize_memory();
+
+    // Optimize disk I/O
+    optimize_disk_io();
+
+    // Optimize network activity
+    optimize_network();
+
+    // Add more optimization tasks as needed based on system requirements
 }
 
 // Signal handler function for SIGTERM and SIGINT
@@ -53,27 +109,13 @@ int main() {
     signal(SIGTERM, signal_handler);
     signal(SIGINT, signal_handler);
 
-    // Daemonize the process
-    daemonize();
-
-    // Main daemon logic
+    // Main optimization loop
     while (1) {
-        // Set the process priority
-        setpriority(PRIO_PROCESS, 0, -10); // Set priority to -10
-
-        // Limit the number of running processes
-        system("pkill -STOP -u $(id -u)"); // Stop new process execution
-        sleep(5); // Wait for 5 seconds
-        system("pkill -CONT -u $(id -u)"); // Resume process execution
-
-        // Adjust CPU frequency (requires appropriate permissions)
-        // system("cpupower frequency-set -f n");
-
-        // Here you can add more logic to optimize CPU and system
-        // For example, monitor CPU usage and adjust frequency dynamically
+        // Optimize system resources
+        optimize_system();
 
         // Sleep for a short period of time before repeating
-        sleep(60); // Sleep for 60 seconds
+        sleep(30); // Sleep for 30 seconds
     }
 
     return 0;
