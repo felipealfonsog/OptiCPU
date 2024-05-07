@@ -1,2 +1,3 @@
 # OptiCPU
-OptiCPU: A utility for optimizing CPU usage and enhancing system performance on Linux.
+OptiCPU is a comprehensive utility designed to optimize CPU usage and enhance overall system performance on Linux-based operating systems. The project aims to provide users with tools and techniques to efficiently manage CPU resources, improve responsiveness, and streamline system operation. Through various optimization strategies, such as adjusting process priorities, limiting the number of running processes, and fine-tuning CPU frequency, OptiCPU offers users the ability to customize and optimize their system according to specific needs and preferences. Whether you're a power user seeking to maximize performance or a system administrator looking to optimize resource utilization across multiple machines, OptiCPU provides a versatile solution for enhancing the efficiency and responsiveness of Linux systems.
+
