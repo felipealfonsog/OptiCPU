@@ -40,39 +40,41 @@ void daemonize() {
     close(STDERR_FILENO);
 }
 
+// Signal handler function for SIGTERM and SIGINT
+void signal_handler(int signum) {
+    if (signum == SIGTERM || signum == SIGINT) {
+        // Add cleanup logic here if needed
+        exit(EXIT_SUCCESS);
+    }
+}
+
 int main() {
+    // Register signal handler for SIGTERM and SIGINT
+    signal(SIGTERM, signal_handler);
+    signal(SIGINT, signal_handler);
+
     // Daemonize the process
     daemonize();
 
     // Main daemon logic
     while (1) {
-        // Get current process priority
-        int priority = getpriority(PRIO_PROCESS, 0);
-        printf("Current process priority: %d\n", priority);
-
-        // Set process priority
+        // Set the process priority
         setpriority(PRIO_PROCESS, 0, -10); // Set priority to -10
 
-        // Check if priority has been changed
-        priority = getpriority(PRIO_PROCESS, 0);
-        printf("New process priority: %d\n", priority);
-
-        // Limit number of processes running
-        // You can adjust the limit according to your system's capacity
-        system("pkill -STOP -u $(id -u)"); // Stop new processes from starting
-        sleep(5); // Sleep for 5 seconds
+        // Limit the number of running processes
+        system("pkill -STOP -u $(id -u)"); // Stop new process execution
+        sleep(5); // Wait for 5 seconds
         system("pkill -CONT -u $(id -u)"); // Resume process execution
 
         // Adjust CPU frequency (requires appropriate permissions)
-        // Uncomment the following line and replace "n" with desired frequency value
         // system("cpupower frequency-set -f n");
 
-        // Here you can add more logic to optimize CPU usage
+        // Here you can add more logic to optimize CPU and system
+        // For example, monitor CPU usage and adjust frequency dynamically
 
-        // Sleep for a while before repeating
+        // Sleep for a short period of time before repeating
         sleep(60); // Sleep for 60 seconds
     }
 
     return 0;
 }
-
