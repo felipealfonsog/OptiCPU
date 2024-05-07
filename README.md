@@ -1,4 +1,5 @@
-### OptiCPU
+### OptiCPU 🔧
+
 OptiCPU is an advanced utility crafted to continuously optimize system resources, with a primary focus on enhancing CPU usage efficiency, on Linux-based operating systems. The project aims to provide users with a comprehensive toolset to dynamically manage CPU resources, fine-tune system parameters, and adaptively adjust system settings to maintain optimal performance under varying workloads. By employing sophisticated algorithms and real-time monitoring techniques, OptiCPU intelligently adjusts CPU frequency, process priorities, memory management settings, disk I/O configurations, and network parameters to ensure efficient resource utilization while minimizing system overhead. Whether you're operating on older hardware with limited resources or managing high-performance systems, OptiCPU offers a versatile solution to enhance system responsiveness and overall performance, providing a seamless computing experience for users across diverse environments.
 
 
@@ -36,7 +37,7 @@ OptiCPU is an advanced utility crafted to continuously optimize system resources
 #### Installation
 #### Via AUR using YAY
 
-[![OptiCPU](https://img.shields.io/badge/OptiCPU-EE6352)](#)
+[![OptiCPU](https://img.shields.io/badge/OptiCPU-green)](#)
 
 [![AUR](https://img.shields.io/aur/version/opticpu)](https://aur.archlinux.org/packages/opticpu)
 
@@ -46,7 +47,7 @@ OptiCPU is an advanced utility crafted to continuously optimize system resources
 
 https://aur.archlinux.org/packages/opticpu
 
-OpyiCPU is available on AUR (Arch User Repository), and it can be installed using the `yay` package manager. Follow the steps below to install it:
+OptiCPU is available on AUR (Arch User Repository), and it can be installed using the `yay` package manager. Follow the steps below to install it:
 
 1. Make sure you have `yay` installed. If not, you can install it with the following command:
    
@@ -109,7 +110,7 @@ If you encounter issues executing the file in the terminal, like this message "-
    ```
    ./installer.sh
    ```
-   NOTE: The script will ask for -sudo permissions-. Just simply type in macOS your macOS user password, and in Linux your -sudo- password.
+   NOTE: The script will ask for -sudo permissions-. Just simply type in Linux your -sudo- password.
 
 Now type 'opticpu' in the terminal and enjoy using it! 😊🚀
 
