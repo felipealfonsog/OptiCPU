@@ -9,33 +9,14 @@ license=('BSD 3-clause')
 depends=('gcc' 'glibc' 'libutil-linux' 'coreutils')
 
 source=("https://github.com/felipealfonsog/OptiCPU/archive/refs/tags/v${pkgver}.tar.gz")
+sha256sums=('fdf95e44bd35394c89e1244b18010894c83631f3188d55cf75de01b79266e7dc')
 
 build() {
-
-  tar xf "v${pkgver}.tar.gz" -C "$srcdir" --strip-components=1
-
-  cd "$srcdir"/OptiCPU-v"$pkgver"
-
+  cd "${srcdir}/OptiCPU-${pkgver}"
   gcc -o opticpu src/opticpu.c
 }
 
-#Fixes 12.8.2023
 package() {
-  #cd "$srcdir/TermNotes-${pkgver}"
-  cd "${srcdir}"/OptiCPU-v"${pkgver}"
-  install -Dm755 src/opticpu "$pkgdir/usr/bin/opticpu"
+  cd "${srcdir}/OptiCPU-${pkgver}/src"
+  install -Dm755 opticpu "${pkgdir}/usr/bin/opticpu"
 }
-
-sha256sums=('fdf95e44bd35394c89e1244b18010894c83631f3188d55cf75de01b79266e7dc')
-
-
-'''
-==> WARNING: Using existing $srcdir/ tree
-==> Starting build()...
-/home/felipe/.cache/yay/opticpu/PKGBUILD: line 17: cd: /home/felipe/.cache/yay/opticpu/src/OptiCPU-v1.0: No such file or directory
-==> ERROR: A failure occurred in build().
-    Aborting...
- -> error making: opticpu-exit status 4
- -> Failed to install the following packages. Manual intervention is required:
-opticpu - exit status 4
-'''
