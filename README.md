@@ -2,6 +2,7 @@
 
 OptiCPU is an advanced utility crafted to continuously optimize system resources, with a primary focus on enhancing CPU usage efficiency, on Linux-based operating systems. The project aims to provide users with a comprehensive toolset to dynamically manage CPU resources, fine-tune system parameters, and adaptively adjust system settings to maintain optimal performance under varying workloads. By employing sophisticated algorithms and real-time monitoring techniques, OptiCPU intelligently adjusts CPU frequency, process priorities, memory management settings, disk I/O configurations, and network parameters to ensure efficient resource utilization while minimizing system overhead. Whether you're operating on older hardware with limited resources or managing high-performance systems, OptiCPU offers a versatile solution to enhance system responsiveness and overall performance, providing a seamless computing experience for users across diverse environments.
 
+[![Warning: This Project is Unstable](https://img.shields.io/badge/Warning-This_Project_is_Unstable-red)](#)
 
 <sub>* This is currently an experimental phase where the primary focus is on making the system functional and establishing a practical and logical pathway that aligns with both my vision and the project's goals. It might contain errors, bugs, etc. Many other non-core elements of the project are considered secondary.</sub>
 

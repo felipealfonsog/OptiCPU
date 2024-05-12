@@ -5,42 +5,33 @@
 #include <sys/resource.h>
 #include <signal.h>
 #include <string.h>
+#include <time.h>
+
+#define LOG_FILE "opticpu.log"
+#define MAX_CPU_LOAD 2.0
+#define MAX_MEM_USAGE 75
+#define MAX_DISK_IO_UTIL 50
+#define MAX_NET_UTIL 10
 
 // Function to optimize CPU usage
 void optimize_cpu() {
     // Set process priority to optimize CPU usage
     setpriority(PRIO_PROCESS, 0, -10); // Set priority to -10
-
-    // Check CPU load and adjust CPU frequency dynamically (requires appropriate permissions)
-    // Add logic to monitor CPU load and adjust frequency if needed
-    FILE* fp = popen("uptime | awk -F'[a-z]:' '{print $2}'", "r");
-    if (fp != NULL) {
-        char loadavg[256];
-        fgets(loadavg, sizeof(loadavg), fp);
-        pclose(fp);
-        
-        float load = atof(loadavg);
-        if (load > 2.0) {
-            system("cpupower frequency-set -g powersave");
-        } else {
-            system("cpupower frequency-set -g performance");
-        }
-    }
 }
 
 // Function to optimize memory usage
 void optimize_memory() {
     // Check available memory and swap usage
-    // Add logic to monitor memory usage and adjust settings if needed
-    FILE* fp = popen("free -m | awk 'NR==2 {print $3}'", "r");
+    FILE* fp = popen("free | awk 'NR==2 {print $3}'", "r");
     if (fp != NULL) {
         char memused[256];
         fgets(memused, sizeof(memused), fp);
         pclose(fp);
         
         int used = atoi(memused);
-        if (used > 75) {
-            system("sysctl vm.swappiness=10");
+        if (used > MAX_MEM_USAGE) {
+            // Add logic to adjust memory settings if needed
+            // For example: system("sysctl vm.swappiness=10");
         }
     }
 }
@@ -56,8 +47,9 @@ void optimize_disk_io() {
         pclose(fp);
         
         int util = atoi(diskutil);
-        if (util > 50) {
-            system("echo deadline > /sys/block/sda/queue/scheduler");
+        if (util > MAX_DISK_IO_UTIL) {
+            // Add logic to adjust disk I/O settings if needed
+            // For example: system("echo deadline > /sys/block/sda/queue/scheduler");
         }
     }
 }
@@ -73,8 +65,9 @@ void optimize_network() {
         pclose(fp);
         
         int util = atoi(netutil);
-        if (util > 10) {
-            system("sysctl -w net.core.netdev_max_backlog=30000");
+        if (util > MAX_NET_UTIL) {
+            // Add logic to adjust network settings if needed
+            // For example: system("sysctl -w net.core.netdev_max_backlog=30000");
         }
     }
 }
@@ -96,7 +89,7 @@ void optimize_system() {
     // Add more optimization tasks as needed based on system requirements
 }
 
-// Signal handler function for SIGTERM and SIGINT
+// Function to handle signals
 void signal_handler(int signum) {
     if (signum == SIGTERM || signum == SIGINT) {
         // Add cleanup logic here if needed
@@ -109,14 +102,34 @@ int main() {
     signal(SIGTERM, signal_handler);
     signal(SIGINT, signal_handler);
 
+    // Open log file
+    FILE *log_file = fopen(LOG_FILE, "a");
+    if (log_file == NULL) {
+        perror("Error opening log file");
+        exit(EXIT_FAILURE);
+    }
+
     // Main optimization loop
     while (1) {
+        // Get current time
+        time_t now;
+        time(&now);
+        struct tm *tm_info = localtime(&now);
+
         // Optimize system resources
         optimize_system();
+
+        // Log activity
+        fprintf(log_file, "[%d-%02d-%02d %02d:%02d:%02d] System optimized\n", 
+            tm_info->tm_year + 1900, tm_info->tm_mon + 1, tm_info->tm_mday,
+            tm_info->tm_hour, tm_info->tm_min, tm_info->tm_sec);
 
         // Sleep for a short period of time before repeating
         sleep(30); // Sleep for 30 seconds
     }
+
+    // Close log file
+    fclose(log_file);
 
     return 0;
 }
