@@ -26,7 +26,7 @@ void install_dependencies() {
 void adjust_cpu_parameters() {
     // Add logic to adjust CPU parameters using cpupower
     // For example: system("cpupower frequency-set -g performance");
-    system("cpupower frequency-set -g performance");
+    system("sudo cpupower frequency-set -g performance");
 }
 
 // Function to optimize CPU usage
