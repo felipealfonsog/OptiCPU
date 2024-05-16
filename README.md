@@ -24,11 +24,27 @@ OptiCPU is an advanced utility crafted to continuously optimize system resources
 
 #### In this code
 
-- The optimize_cpu function monitors the system load using the uptime command and adjusts the CPU frequency accordingly.
-- The optimize_memory function checks the amount of used memory and adjusts the swappiness parameter if memory usage is high.
-- The optimize_disk_io function monitors disk I/O activity using the iostat command and adjusts the disk scheduler if disk utilization is high.
-- The optimize_network function monitors network activity using the sar command and adjusts the netdev_max_backlog parameter if network utilization is high.
-- All these functions are called within the optimize_system function, which is executed in a loop to continuously optimize the system resources.
+- `install_dependencies()` Function:
+  - Installs necessary system dependencies such as `sysstat` and `cpupower` using the `pacman` package manager if they are not already installed.
+
+- `adjust_cpu_parameters()` Function:
+  - Adjusts CPU parameters by setting the CPU frequency governor to "performance" using the `cpupower frequency-set -g performance` command with superuser privileges.
+
+- `optimize_cpu()` Function:
+  - Sets the priority of the process to optimize CPU usage by calling `setpriority(PRIO_PROCESS, 0, -10)`.
+
+- `optimize_memory()` Function:
+  - Monitors available memory and swap usage to optimize memory usage. It may adjust memory settings if memory usage exceeds a defined threshold.
+
+- `optimize_disk_io()` Function:
+  - Monitors disk I/O activity using the `iostat` command and adjusts disk scheduler settings if disk utilization is high.
+
+- `optimize_network()` Function:
+  - Monitors network activity using the `sar` command and adjusts network settings if network utilization is high.
+
+- `optimize_system()` Function:
+  - Calls all optimization functions (`optimize_cpu()`, `optimize_memory()`, `optimize_disk_io()`, `optimize_network()`) to continuously optimize system resources. This function is executed in a loop to repeatedly optimize the system.
+
 
 
 #
