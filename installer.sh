@@ -5,11 +5,19 @@
 # Define paths and file names
 INSTALL_DIR="/usr/local/bin"
 EXECUTABLE_NAME="opticpu"
-SOURCE_FILE="opticpu"
+SOURCE_FILE_URL="https://raw.githubusercontent.com/felipealfonsog/OptiCPU/main/src/opticpu.c"
+
+# Download the source file
+echo "Downloading the source file..."
+wget -O "$SOURCE_FILE.c" "$SOURCE_FILE_URL"
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to download the source file."
+    exit 1
+fi
 
 # Compile the program
 echo "Compiling the program..."
-gcc -o "$EXECUTABLE_NAME" "$SOURCE_FILE.c"
+gcc -o "$EXECUTABLE_NAME" "$EXECUTABLE_NAME.c"
 if [ $? -ne 0 ]; then
     echo "Error: Failed to compile the program."
     exit 1
@@ -24,6 +32,6 @@ if [ $? -ne 0 ]; then
 fi
 
 # Clean up temporary files
-rm -f "$SOURCE_FILE"
+rm -f "$EXECUTABLE_NAME.c"
 
 echo "OptiCPU has been successfully installed to $INSTALL_DIR."
