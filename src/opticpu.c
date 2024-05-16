@@ -51,7 +51,7 @@ void optimize_memory() {
         if (used > MAX_MEM_USAGE) {
             // logic to adjust memory settings if needed
             // system("sysctl vm.swappiness=10");
-            system("sysctl vm.swappiness=10");
+            system("sudo sysctl vm.swappiness=10");
         }
     }
 }
