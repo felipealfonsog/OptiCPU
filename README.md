@@ -160,6 +160,79 @@ Thank you for joining me on this journey, and I hope it brings value to your lif
 #
 
 
+#### Setting up "OptiCPU" as a Service
+
+1. Create a Service File
+
+Create a new service file for "OptiCPU" using a text editor of your choice. For example:
+
+```
+sudo nano /etc/systemd/system/opticpu.service
+```
+
+2. Add Service Configuration
+Paste the following configuration into the opticpu.service file:
+
+```
+[Unit]
+Description=OptiCPU Optimization Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/opticpu
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+This configuration specifies that the service should start "OptiCPU" on boot and restart it if it crashes.
+
+3. Save and Close the File
+
+After adding the configuration, save and close the file.
+
+4. Enable and Start the Service
+
+Enable the "opticpu" service to start automatically on boot:
+
+```
+sudo systemctl enable opticpu
+```
+
+```
+Start the "opticpu" service:
+```
+
+```
+sudo systemctl start opticpu
+```
+
+5. Check Service Status
+
+You can check the status of the "opticpu" service to ensure it's running:
+
+```
+sudo systemctl status opticpu
+```
+
+6. Optionally, Stop or Disable the Service
+
+To stop the "opticpu" service:
+
+```
+sudo systemctl stop opticpu
+```
+
+To disable the "opticpu" service from starting automatically on boot:
+
+```
+sudo systemctl disable opticpu
+```
+
+#
+
 
 #### 🌟 Contact the Creator and Engineer Behind This Project
 
