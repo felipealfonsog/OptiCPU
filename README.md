@@ -2,6 +2,18 @@
 
 OptiCPU is an advanced utility crafted to continuously optimize system resources, with a primary focus on enhancing CPU usage efficiency, on Linux-based operating systems. The project aims to provide users with a comprehensive toolset to dynamically manage CPU resources, fine-tune system parameters, and adaptively adjust system settings to maintain optimal performance under varying workloads. By employing sophisticated algorithms and real-time monitoring techniques, OptiCPU intelligently adjusts CPU frequency, process priorities, memory management settings, disk I/O configurations, and network parameters to ensure efficient resource utilization while minimizing system overhead. Whether you're operating on older hardware with limited resources or managing high-performance systems, OptiCPU offers a versatile solution to enhance system responsiveness and overall performance, providing a seamless computing experience for users across diverse environments.
 
+# 
+
+In today's fast-paced technological landscape, older hardware often struggles to keep up with the demands of modern software. Many users still rely on aging computers that may not have the resources to smoothly run the latest operating systems and applications. Recognizing this challenge, my goal is to provide a solution tailored to such older hardware, particularly those running Linux, with a preference for Arch Linux due to its lightweight and customizable nature.
+
+The idea is to develop a suite of optimization tools that enhance the performance of these older systems, allowing them to run more efficiently and effectively. By focusing on optimizing resource usage, such as CPU, memory, disk I/O, and network activity, we aim to breathe new life into these aging machines.
+
+The key philosophy behind this project is to leverage the flexibility and versatility of Linux, particularly Arch Linux, to create a tailored optimization solution. This involves fine-tuning system settings, adjusting resource allocation, and implementing intelligent monitoring mechanisms to dynamically adapt to changing workload demands.
+
+By empowering users with the ability to optimize their systems, we enable them to extend the lifespan of their hardware, reduce electronic waste, and continue to benefit from the many advantages of Linux computing. Ultimately, this initiative aligns with the principles of sustainability, accessibility, and empowerment, ensuring that even older hardware can thrive in today's digital ecosystem.
+
+#
+
 [![Warning: This Project is Unstable](https://img.shields.io/badge/Warning-This_Project_is_Unstable-red)](#)
 
 <sub>* This is currently an experimental phase where the primary focus is on making the system functional and establishing a practical and logical pathway that aligns with both my vision and the project's goals. It might contain errors, bugs, etc. Many other non-core elements of the project are considered secondary.</sub>
