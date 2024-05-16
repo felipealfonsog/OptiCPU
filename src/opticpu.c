@@ -13,10 +13,29 @@
 #define MAX_DISK_IO_UTIL 50
 #define MAX_NET_UTIL 10
 
+// Function to install dependencies
+void install_dependencies() {
+    // Install sysstat package if not already installed
+    system("pacman -Q sysstat || sudo pacman -S --noconfirm sysstat");
+
+    // Install cpupower package if not already installed
+    system("pacman -Q cpupower || sudo pacman -S --noconfirm cpupower");
+}
+
+// Function to adjust CPU parameters using cpupower
+void adjust_cpu_parameters() {
+    // Add logic to adjust CPU parameters using cpupower
+    // For example: system("cpupower frequency-set -g performance");
+    system("cpupower frequency-set -g performance");
+}
+
 // Function to optimize CPU usage
 void optimize_cpu() {
     // Set process priority to optimize CPU usage
     setpriority(PRIO_PROCESS, 0, -10); // Set priority to -10
+
+    // Adjust CPU parameters using cpupower
+    adjust_cpu_parameters();
 }
 
 // Function to optimize memory usage
@@ -101,6 +120,9 @@ int main() {
     // Register signal handler for SIGTERM and SIGINT
     signal(SIGTERM, signal_handler);
     signal(SIGINT, signal_handler);
+
+    // Install dependencies
+    install_dependencies();
 
     // Open log file
     FILE *log_file = fopen(LOG_FILE, "a");
