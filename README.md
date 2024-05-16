@@ -4,6 +4,9 @@ OptiCPU is an advanced utility crafted to continuously optimize system resources
 
 # 
 
+[![OptiCPU Philosophy](https://img.shields.io/badge/OptiCPU-Philosophy-green)](https://github.com/OptiCPU)
+
+
 In today's fast-paced technological landscape, older hardware often struggles to keep up with the demands of modern software. Many users still rely on aging computers that may not have the resources to smoothly run the latest operating systems and applications. Recognizing this challenge, my goal is to provide a solution tailored to such older hardware, particularly those running Linux, with a preference for Arch Linux due to its lightweight and customizable nature.
 
 The idea is to develop a suite of optimization tools that enhance the performance of these older systems, allowing them to run more efficiently and effectively. By focusing on optimizing resource usage, such as CPU, memory, disk I/O, and network activity, we aim to breathe new life into these aging machines.
