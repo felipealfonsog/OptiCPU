@@ -125,6 +125,8 @@ If you want to use -wget- just copy/paste this line:
    brew install wget
    ```
 
+<sub>After to install it with yay, install it as a service with -sudo-.</sub>
+
 #### Important note when installing:
 
 If you encounter issues executing the file in the terminal, like this message "-bash: ./installer.sh: Permission denied", follow these simple steps to fix it:
