@@ -165,6 +165,8 @@ Thank you for joining me on this journey, and I hope it brings value to your lif
 
 #### Setting up "OptiCPU" as a Service
 
+[![OptiCPU Service](https://img.shields.io/badge/OptiCPU-Service-green)](https://github.com/OptiCPU)
+
 1. Create a Service File
 
 Create a new service file for "OptiCPU" using a text editor of your choice. For example:
