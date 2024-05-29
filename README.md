@@ -93,7 +93,7 @@ OptiCPU is available on AUR (Arch User Repository), and it can be installed usin
 This command will automatically fetch the package from AUR and handle the installation process for you.
 Run it with the command opticpu.
 
-<sub>After to install it with yay, install it as a service with -sudo-.</sub>
+<sub>After to install it with yay, install it [as a service](https://github.com/felipealfonsog/OptiCPU?tab=readme-ov-file#setting-up-opticpu-as-a-service) with -sudo-.</sub>
 
 #
 
@@ -123,7 +123,7 @@ If you want to use -wget- just copy/paste this line:
    brew install wget
    ```
 
-<sub>After to install it with yay, install it as a service with -sudo-.</sub>
+<sub>After to install it with yay, install it [as a service](https://github.com/felipealfonsog/OptiCPU?tab=readme-ov-file#setting-up-opticpu-as-a-service) with -sudo-.</sub>
 
 #### Important note when installing:
 
