@@ -107,7 +107,7 @@ void signal_handler(int signum) {
 int main(int argc, char *argv[]) {
     // Check if the program is running as root
     if (geteuid() != 0) {
-        printf("OptiCPU must be installed and run as a service with root privileges. Please check the instructions on the GitHub page: github.com/OptiCPU\n");
+        printf("OptiCPU must be installed and run as a service with root privileges. Please check the instructions on the GitHub page: github.com/felipealfonsog/OptiCPU\n");
         return EXIT_FAILURE;
     }
 
