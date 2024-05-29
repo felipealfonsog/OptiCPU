@@ -39,9 +39,6 @@ By empowering users with the ability to optimize their systems, we enable them t
 
 #### In this code
 
-- `install_dependencies()` Function:
-  - Installs necessary system dependencies such as `sysstat` and `cpupower` using the `pacman` package manager if they are not already installed.
-
 - `adjust_cpu_parameters()` Function:
   - Adjusts CPU parameters by setting the CPU frequency governor to "performance" using the `cpupower frequency-set -g performance` command with superuser privileges.
 
@@ -124,6 +121,8 @@ If you want to use -wget- just copy/paste this line:
    ```
    brew install wget
    ```
+
+<sub>After to install it with yay, install it as a service with -sudo-.</sub>
 
 #### Important note when installing:
 

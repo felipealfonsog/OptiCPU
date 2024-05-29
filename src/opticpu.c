@@ -13,20 +13,10 @@
 #define MAX_DISK_IO_UTIL 50
 #define MAX_NET_UTIL 10
 
-// Function to install dependencies
-void install_dependencies() {
-    // Install sysstat package if not already installed
-    system("pacman -Q sysstat || sudo pacman -S --noconfirm sysstat");
-
-    // Install cpupower package if not already installed
-    system("pacman -Q cpupower || sudo pacman -S --noconfirm cpupower");
-}
-
 // Function to adjust CPU parameters using cpupower
 void adjust_cpu_parameters() {
-    //  logic to adjust CPU parameters using cpupower
-    // system("cpupower frequency-set -g performance");
-    system("sudo cpupower frequency-set -g performance");
+    // Logic to adjust CPU parameters using cpupower
+    system("cpupower frequency-set -g performance");
 }
 
 // Function to optimize CPU usage
@@ -49,9 +39,8 @@ void optimize_memory() {
         
         int used = atoi(memused);
         if (used > MAX_MEM_USAGE) {
-            // logic to adjust memory settings if needed
-            // system("sysctl vm.swappiness=10");
-            system("sudo sysctl vm.swappiness=10");
+            // Logic to adjust memory settings if needed
+            system("sysctl vm.swappiness=10");
         }
     }
 }
@@ -59,7 +48,6 @@ void optimize_memory() {
 // Function to optimize disk I/O
 void optimize_disk_io() {
     // Check disk I/O activity and adjust disk scheduler for better performance
-    //  logic to monitor disk I/O activity and adjust settings if needed
     FILE* fp = popen("iostat -c | awk 'NR==4 {print $2}'", "r");
     if (fp != NULL) {
         char diskutil[256];
@@ -68,8 +56,7 @@ void optimize_disk_io() {
         
         int util = atoi(diskutil);
         if (util > MAX_DISK_IO_UTIL) {
-            // logic to adjust disk I/O settings if needed
-            //  system("echo deadline > /sys/block/sda/queue/scheduler");
+            // Logic to adjust disk I/O settings if needed
             system("echo deadline > /sys/block/sda/queue/scheduler");
         }
     }
@@ -78,7 +65,6 @@ void optimize_disk_io() {
 // Function to optimize network activity
 void optimize_network() {
     // Check network activity and optimize network settings for better performance
-    // logic to monitor network activity and adjust settings if needed
     FILE* fp = popen("sar -n DEV 1 1 | grep Average | awk '{print $6}'", "r");
     if (fp != NULL) {
         char netutil[256];
@@ -87,8 +73,7 @@ void optimize_network() {
         
         int util = atoi(netutil);
         if (util > MAX_NET_UTIL) {
-            // logic to adjust network settings if needed
-            // system("sysctl -w net.core.netdev_max_backlog=30000");
+            // Logic to adjust network settings if needed
             system("sysctl -w net.core.netdev_max_backlog=30000");
         }
     }
@@ -108,7 +93,7 @@ void optimize_system() {
     // Optimize network activity
     optimize_network();
 
-    // more optimization tasks as needed based on system requirements
+    // More optimization tasks as needed based on system requirements
 }
 
 // Function to handle signals
@@ -119,13 +104,16 @@ void signal_handler(int signum) {
     }
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+    // Check if the program is running as root
+    if (geteuid() != 0) {
+        printf("OptiCPU must be installed and run as a service with root privileges. Please check the instructions on the GitHub page: github.com/OptiCPU\n");
+        return EXIT_FAILURE;
+    }
+
     // Register signal handler for SIGTERM and SIGINT
     signal(SIGTERM, signal_handler);
     signal(SIGINT, signal_handler);
-
-    // Install dependencies
-    install_dependencies();
 
     // Open log file
     FILE *log_file = fopen(LOG_FILE, "a");
