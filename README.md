@@ -4,7 +4,7 @@ OptiCPU is an advanced utility crafted to continuously optimize system resources
 
 # 
 
-[![OptiCPU Philosophy](https://img.shields.io/badge/OptiCPU-Philosophy-green)](https://github.com/OptiCPU)
+[![OptiCPU Philosophy](https://img.shields.io/badge/OptiCPU-Philosophy-green)](#)
 
 
 In today's fast-paced technological landscape, older hardware often struggles to keep up with the demands of modern software. Many users still rely on aging computers that may not have the resources to smoothly run the latest operating systems and applications. Recognizing this challenge, my goal is to provide a solution tailored to such older hardware, particularly those running Linux, with a preference for Arch Linux due to its lightweight and customizable nature.
@@ -165,7 +165,7 @@ Thank you for joining me on this journey, and I hope it brings value to your lif
 
 #### Setting up "OptiCPU" as a Service
 
-[![OptiCPU Service](https://img.shields.io/badge/OptiCPU-Service-green)](https://github.com/OptiCPU)
+[![OptiCPU Service](https://img.shields.io/badge/OptiCPU-Service-green)](#)
 
 1. Create a Service File
 
