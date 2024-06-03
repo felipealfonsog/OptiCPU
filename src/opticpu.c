@@ -13,6 +13,8 @@
 #define MAX_DISK_IO_UTIL 50
 #define MAX_NET_UTIL 10
 
+#define MEMORY_ALLOC_SIZE (1024 * 1024 * 100) // 100 MB
+
 // Function to adjust CPU parameters using cpupower
 void adjust_cpu_parameters() {
     // Logic to adjust CPU parameters using cpupower
@@ -79,6 +81,18 @@ void optimize_network() {
     }
 }
 
+// Function to allocate memory
+void allocate_memory() {
+    // Allocate a large block of memory and fill it with data
+    void *memory_block = malloc(MEMORY_ALLOC_SIZE);
+    if (memory_block != NULL) {
+        memset(memory_block, 0, MEMORY_ALLOC_SIZE);
+        // Simulate usage
+        sleep(10);
+        free(memory_block);
+    }
+}
+
 // Function to optimize overall system resources
 void optimize_system() {
     // Optimize CPU usage
@@ -92,6 +106,9 @@ void optimize_system() {
 
     // Optimize network activity
     optimize_network();
+
+    // Allocate and use memory
+    allocate_memory();
 
     // More optimization tasks as needed based on system requirements
 }
