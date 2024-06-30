@@ -8,6 +8,8 @@ EXECUTABLE_NAME="opticpu"
 SOURCE_FILE_URL="https://raw.githubusercontent.com/felipealfonsog/OptiCPU/main/src/opticpu.c"
 
 # Download the source file
+echo "Welcome to OptiCPU installer"
+echo "----------------------------"
 echo "Downloading the source file..."
 wget -O "${EXECUTABLE_NAME}.c" "$SOURCE_FILE_URL"
 if [ $? -ne 0 ]; then
