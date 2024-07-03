@@ -1,0 +1,4 @@
+#!/bin/bash
+# Compilar el código fuente
+gcc /usr/local/src/opticpu.c -o /usr/local/bin/opticpu
+

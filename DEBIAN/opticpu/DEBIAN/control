@@ -1,0 +1,9 @@
+Package: opticpu
+Version: 1.0
+Section: base
+Priority: optional
+Architecture: amd64
+Depends: build-essential
+Maintainer: Felipe <f.alfonso@res-ear.ch>
+Description: OptiCPU is an advanced utility crafted to continuously optimize system resources.
+
