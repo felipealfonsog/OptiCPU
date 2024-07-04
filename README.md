@@ -49,7 +49,7 @@ By empowering users with the ability to optimize their systems, we enable them t
 ##### Only 1.6 MBG in memory!
 
 <p align="center">
-  <img src="./images/usage-mgb.JPG" alt="Screenshot Usage" width="400" height="350">
+  <img src="./images/usage-mgb.JPG" alt="Screenshot Usage" width="400" height="93">
 </p>
 
 #
