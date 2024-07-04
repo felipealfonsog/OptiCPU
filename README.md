@@ -122,7 +122,7 @@ Run it with the command opticpu.
 [![Kali Installer](https://img.shields.io/badge/Kali%20Linux%20Installer-Available-purple)](#)
 
 <p align="center">
-  <img src="./images/debian-install.jpg" alt="Screenshot Usage" width="400" height="350">
+  <img src="./images/debian-install.jpg" alt="Screenshot Usage" width="600" height="550">
 </p>
 
 
