@@ -97,6 +97,34 @@ Run it with the command opticpu.
 
 #
 
+[![Debian Installer](https://img.shields.io/badge/Debian%20Installer%20Available-red)](#)
+
+#### To Install it: 
+
+The .deb file for Debian based distros: [here](https://github.com/felipealfonsog/OptiCPU/raw/main/DEBIAN/opticpu/opticpu.deb).
+
+Or just Copy - Paste in your terminal and use -curl- to start downloading the file:
+
+   ```
+   curl -O https://github.com/felipealfonsog/OptiCPU/raw/main/DEBIAN/opticpu/opticpu.deb
+   ```
+
+If you want to use -wget- just copy/paste this line:
+
+   ```
+   wget https://github.com/felipealfonsog/OptiCPU/raw/main/DEBIAN/opticpu/opticpu.deb
+   ```
+
+Install it:
+
+   ```
+   sudo dpkg -i opticpu.deb
+   ```
+
+<sub>This installer has been tested under Debian and Kali Linux.</sub>
+
+#
+
 #### Bash Installer 🚀 for Linux
 
 [![Bash Installer Version](https://img.shields.io/badge/Bash%20Installer%20Version-Available-brightgreen)](#)
