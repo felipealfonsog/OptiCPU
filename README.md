@@ -97,6 +97,8 @@ Run it with the command opticpu.
 
 #
 
+#### Debian GNU and Kali Linux .deb Installer
+
 [![Debian Installer](https://img.shields.io/badge/Debian/GNU%20Linux%20Installer-Available-brightgreen)](#)
 
 [![Kali Installer](https://img.shields.io/badge/Kali%20Linux%20Installer-Available-purple)](#)
