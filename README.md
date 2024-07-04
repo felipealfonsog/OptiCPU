@@ -43,7 +43,7 @@ By empowering users with the ability to optimize their systems, we enable them t
 [![View Screenshots](https://img.shields.io/badge/View-Screenshots-yellow)](#)
 
 <p align="center">
-  <img src="./images/opticpu-running.png" alt="Screenshot Usage" width="400" height="350">
+  <img src="./images/opticpu-running.png" alt="Screenshot Usage" width="600" height="450">
 </p>
 
 ##### Only 1.6 MBG in memory!
@@ -122,7 +122,7 @@ Run it with the command opticpu.
 [![Kali Installer](https://img.shields.io/badge/Kali%20Linux%20Installer-Available-purple)](#)
 
 <p align="center">
-  <img src="./images/debian-install.jpg" alt="Screenshot Usage" width="600" height="550">
+  <img src="./images/debian-install.jpg" alt="Screenshot Usage" width="600" height="450">
 </p>
 
 
