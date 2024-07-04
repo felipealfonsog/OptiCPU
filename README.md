@@ -37,6 +37,24 @@ By empowering users with the ability to optimize their systems, we enable them t
 
 #
 
+#### Screenshots
+#### OptiCPU running
+
+[![View Screenshots](https://img.shields.io/badge/View-Screenshots-yellow)](#)
+
+<p align="center">
+  <img src="./images/opticpu-running.png" alt="Screenshot Usage" width="400" height="350">
+</p>
+
+##### Only 1.6 MBG in memory!
+
+<p align="center">
+  <img src="./images/usage-mgb.JPG" alt="Screenshot Usage" width="400" height="350">
+</p>
+
+#
+
+
 #### In this code
 
 - `adjust_cpu_parameters()` Function:
@@ -102,6 +120,11 @@ Run it with the command opticpu.
 [![Debian Installer](https://img.shields.io/badge/Debian/GNU%20Linux%20Installer-Available-brightgreen)](#)
 
 [![Kali Installer](https://img.shields.io/badge/Kali%20Linux%20Installer-Available-purple)](#)
+
+<p align="center">
+  <img src="./images/debian-install.jpg" alt="Screenshot Usage" width="400" height="350">
+</p>
+
 
 #### To Install it: 
 
