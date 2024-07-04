@@ -97,7 +97,9 @@ Run it with the command opticpu.
 
 #
 
-[![Debian Installer](https://img.shields.io/badge/Bash%20Installer-Available-brightgreen)](#)
+[![Debian Installer](https://img.shields.io/badge/Debian/GNU%20Linux%20Installer-Available-brightgreen)](#)
+
+[![Kali Installer](https://img.shields.io/badge/Kali%20Linux%20Installer-Available-purple)](#)
 
 #### To Install it: 
 
