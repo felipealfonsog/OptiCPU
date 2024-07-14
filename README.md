@@ -16,8 +16,15 @@ The key philosophy behind this project is to leverage the flexibility and versat
 By empowering users with the ability to optimize their systems, we enable them to extend the lifespan of their hardware, reduce electronic waste, and continue to benefit from the many advantages of Linux computing. Ultimately, this initiative aligns with the principles of sustainability, accessibility, and empowerment, ensuring that even older hardware can thrive in today's digital ecosystem.
 
 #
-
+<!-- 
 [![Warning: This Project is Unstable](https://img.shields.io/badge/Warning-This_Project_is_Unstable-red)](#)
+-->
+> [!WARNING]
+> This project is a work in progress. The first stable, feature-complete release
+> will be version 1.0.0. As such, it is advised that you do not use this as your daily driver
+> unless you are willing to encounter some paper cuts along the way. If you are willing to 
+> lend your time to find bugs, fix bugs, or submit proposals for new features, it would
+> be greatly appreciated.
 
 <sub>* This is currently an experimental phase where the primary focus is on making the system functional and establishing a practical and logical pathway that aligns with both my vision and the project's goals. It might contain errors, bugs, etc. Many other non-core elements of the project are considered secondary.</sub>
 
