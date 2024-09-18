@@ -235,6 +235,24 @@ Thank you for joining me on this journey, and I hope it brings value to your lif
 
 [![OptiCPU Service](https://img.shields.io/badge/OptiCPU-Service-green)](#)
 
+#### Use the Bash - Daemon Installer
+
+
+ ```
+curl -O https://raw.githubusercontent.com/felipealfonsog/OptiCPU/main/installer-daemon.sh
+
+ ```
+
+ ```
+chmod +x install-demon.sh
+
+./install-daemon.sh
+
+ ```
+
+
+#### Configure the service manually
+
 1. Create a Service File
 
 Create a new service file for "OptiCPU" using a text editor of your choice. For example:
