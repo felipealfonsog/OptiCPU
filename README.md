@@ -244,7 +244,7 @@ curl -O https://raw.githubusercontent.com/felipealfonsog/OptiCPU/main/installer-
  ```
 
  ```
-chmod +x install-demon.sh
+chmod +x install-daemon.sh
 
 ./install-daemon.sh
 
