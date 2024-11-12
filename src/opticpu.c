@@ -30,136 +30,139 @@ void optimize_cpu() {
     adjust_cpu_parameters();
 }
 
+// Function to check if CPU optimization is needed
+int cpu_needs_optimization() {
+    // Example check for CPU load
+    FILE* fp = popen("uptime | awk -F'average:' '{print $2}' | awk '{print $1}'", "r");
+    if (fp != NULL) {
+        char loadavg[16];
+        fgets(loadavg, sizeof(loadavg), fp);
+        pclose(fp);
+
+        double cpu_load = atof(loadavg);
+        return cpu_load > MAX_CPU_LOAD;
+    }
+    return 0;
+}
+
 // Function to optimize memory usage
 void optimize_memory() {
-    // Check available memory and swap usage
-    FILE* fp = popen("free | awk 'NR==2 {print $3}'", "r");
+    // Adjust memory settings if usage exceeds threshold
+    system("sysctl vm.swappiness=10");
+}
+
+// Function to check if memory optimization is needed
+int memory_needs_optimization() {
+    FILE* fp = popen("free | awk 'NR==2 {print $3/$2 * 100}'", "r");
     if (fp != NULL) {
-        char memused[256];
+        char memused[16];
         fgets(memused, sizeof(memused), fp);
         pclose(fp);
-        
-        int used = atoi(memused);
-        if (used > MAX_MEM_USAGE) {
-            // Logic to adjust memory settings if needed
-            system("sysctl vm.swappiness=10");
-        }
+
+        int used_percentage = atoi(memused);
+        return used_percentage > MAX_MEM_USAGE;
     }
+    return 0;
 }
 
 // Function to optimize disk I/O
 void optimize_disk_io() {
-    // Check disk I/O activity and adjust disk scheduler for better performance
+    // Adjust disk I/O settings if usage exceeds threshold
+    system("echo deadline > /sys/block/sda/queue/scheduler");
+}
+
+// Function to check if disk I/O optimization is needed
+int disk_io_needs_optimization() {
     FILE* fp = popen("iostat -c | awk 'NR==4 {print $2}'", "r");
     if (fp != NULL) {
-        char diskutil[256];
+        char diskutil[16];
         fgets(diskutil, sizeof(diskutil), fp);
         pclose(fp);
-        
+
         int util = atoi(diskutil);
-        if (util > MAX_DISK_IO_UTIL) {
-            // Logic to adjust disk I/O settings if needed
-            system("echo deadline > /sys/block/sda/queue/scheduler");
-        }
+        return util > MAX_DISK_IO_UTIL;
     }
+    return 0;
 }
 
 // Function to optimize network activity
 void optimize_network() {
-    // Check network activity and optimize network settings for better performance
+    // Adjust network settings if usage exceeds threshold
+    system("sysctl -w net.core.netdev_max_backlog=30000");
+}
+
+// Function to check if network optimization is needed
+int network_needs_optimization() {
     FILE* fp = popen("sar -n DEV 1 1 | grep Average | awk '{print $6}'", "r");
     if (fp != NULL) {
-        char netutil[256];
+        char netutil[16];
         fgets(netutil, sizeof(netutil), fp);
         pclose(fp);
-        
+
         int util = atoi(netutil);
-        if (util > MAX_NET_UTIL) {
-            // Logic to adjust network settings if needed
-            system("sysctl -w net.core.netdev_max_backlog=30000");
-        }
+        return util > MAX_NET_UTIL;
     }
-}
-
-// Function to allocate memory
-void allocate_memory() {
-    // Allocate a large block of memory and fill it with data
-    void *memory_block = malloc(MEMORY_ALLOC_SIZE);
-    if (memory_block != NULL) {
-        memset(memory_block, 0, MEMORY_ALLOC_SIZE);
-        // Simulate usage
-        sleep(10);
-        free(memory_block);
-    }
-}
-
-// Function to optimize overall system resources
-void optimize_system() {
-    // Optimize CPU usage
-    optimize_cpu();
-
-    // Optimize memory usage
-    optimize_memory();
-
-    // Optimize disk I/O
-    optimize_disk_io();
-
-    // Optimize network activity
-    optimize_network();
-
-    // Allocate and use memory
-    allocate_memory();
-
-    // More optimization tasks as needed based on system requirements
+    return 0;
 }
 
 // Function to handle signals
 void signal_handler(int signum) {
     if (signum == SIGTERM || signum == SIGINT) {
-        // Add cleanup logic here if needed
         exit(EXIT_SUCCESS);
     }
 }
 
 int main(int argc, char *argv[]) {
-    // Check if the program is running as root
     if (geteuid() != 0) {
         printf("OptiCPU must be installed and run as a service with root privileges. Please check the instructions on the GitHub page: github.com/felipealfonsog/OptiCPU\n");
         return EXIT_FAILURE;
     }
 
-    // Register signal handler for SIGTERM and SIGINT
     signal(SIGTERM, signal_handler);
     signal(SIGINT, signal_handler);
 
-    // Open log file
     FILE *log_file = fopen(LOG_FILE, "a");
     if (log_file == NULL) {
         perror("Error opening log file");
         exit(EXIT_FAILURE);
     }
 
-    // Main optimization loop
     while (1) {
-        // Get current time
-        time_t now;
-        time(&now);
-        struct tm *tm_info = localtime(&now);
+        int optimized = 0;
+        
+        if (cpu_needs_optimization()) {
+            optimize_cpu();
+            optimized = 1;
+        }
+        
+        if (memory_needs_optimization()) {
+            optimize_memory();
+            optimized = 1;
+        }
+        
+        if (disk_io_needs_optimization()) {
+            optimize_disk_io();
+            optimized = 1;
+        }
+        
+        if (network_needs_optimization()) {
+            optimize_network();
+            optimized = 1;
+        }
 
-        // Optimize system resources
-        optimize_system();
-
-        // Log activity
-        fprintf(log_file, "[%d-%02d-%02d %02d:%02d:%02d] System optimized\n", 
-            tm_info->tm_year + 1900, tm_info->tm_mon + 1, tm_info->tm_mday,
-            tm_info->tm_hour, tm_info->tm_min, tm_info->tm_sec);
-
-        // Sleep for a short period of time before repeating
-        sleep(30); // Sleep for 30 seconds
+        if (optimized) {
+            time_t now;
+            time(&now);
+            struct tm *tm_info = localtime(&now);
+            fprintf(log_file, "[%d-%02d-%02d %02d:%02d:%02d] System optimized\n", 
+                tm_info->tm_year + 1900, tm_info->tm_mon + 1, tm_info->tm_mday,
+                tm_info->tm_hour, tm_info->tm_min, tm_info->tm_sec);
+            fflush(log_file);
+        }
+        
+        sleep(5);  // Re-check every 5 seconds to avoid rapid looping
     }
 
-    // Close log file
     fclose(log_file);
-
     return 0;
 }
