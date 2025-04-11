@@ -49,6 +49,18 @@ int cpu_needs_optimization() {
 void optimize_memory() {
     // Adjust memory settings if usage exceeds threshold
     system("sysctl vm.swappiness=10");
+    // Allocate memory to optimize usage
+    void* memory = malloc(MEMORY_ALLOC_SIZE);
+    if (memory != NULL) {
+        free(memory);
+    }
+    // Adjust memory parameters using sysctl
+    system("sysctl -w vm.dirty_ratio=10");
+    system("sysctl -w vm.dirty_background_ratio=5");
+    system("sysctl -w vm.vfs_cache_pressure=50");
+    system("sysctl -w vm.overcommit_memory=2");
+    system("sysctl -w vm.overcommit_ratio=50");
+    system("sysctl -w vm.min_free_kbytes=65536");
 }
 
 // Function to check if memory optimization is needed
