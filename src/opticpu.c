@@ -89,11 +89,23 @@ int memory_needs_optimization() {
 void optimize_disk_io() {
     // Adjust disk I/O settings if usage exceeds threshold
     system("echo deadline > /sys/block/sda/queue/scheduler");
+    // Increase the number of requests to improve disk I/O performance
+    system("echo 1024 > /sys/block/sda/queue/nr_requests");
+    // Disable I/O statistics to reduce overhead
+    system("echo 0 > /sys/block/sda/queue/iostats");
+    // Adjust I/O scheduler parameters to improve disk I/O performance
+    system("echo 0 > /sys/block/sda/queue/iosched/quantum");
+    // Adjust I/O scheduler parameters to improve disk I/O performance
+    system("echo 0 > /sys/block/sda/queue/iosched/slice_idle");
+
     // Adjust dirty ratio to reduce disk write latency
     system("sysctl -w vm.dirty_ratio=10");
     // Adjust dirty background ratio to reduce disk write latency
     // This can help improve disk I/O performance under high load
     system("sysctl -w vm.dirty_background_ratio=5");
+
+    // Adjust dirty expire centisecs to reduce disk write latency
+    system("sysctl -w vm.dirty_expire_centisecs=500");
 
 }
 
