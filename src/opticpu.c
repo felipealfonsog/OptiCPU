@@ -19,6 +19,7 @@
 void adjust_cpu_parameters() {
     // Logic to adjust CPU parameters using cpupower
     system("cpupower frequency-set -g performance");
+
 }
 
 // Function to optimize CPU usage
@@ -61,6 +62,13 @@ void optimize_memory() {
     system("sysctl -w vm.overcommit_memory=2");
     system("sysctl -w vm.overcommit_ratio=50");
     system("sysctl -w vm.min_free_kbytes=65536");
+    // Adjust memory parameters to improve performance under high memory pressure
+    system("sysctl -w vm.page-cluster=3");
+    // Enable zone reclaim mode to improve memory reclaiming
+    // This can help reduce memory fragmentation and improve performance under high memory pressure
+    system("sysctl -w vm.zone_reclaim_mode=1");
+    // Enable huge pages to improve memory access performance for large applications
+    system("sysctl -w vm.nr_hugepages=128");
 }
 
 // Function to check if memory optimization is needed
@@ -81,6 +89,12 @@ int memory_needs_optimization() {
 void optimize_disk_io() {
     // Adjust disk I/O settings if usage exceeds threshold
     system("echo deadline > /sys/block/sda/queue/scheduler");
+    // Adjust dirty ratio to reduce disk write latency
+    system("sysctl -w vm.dirty_ratio=10");
+    // Adjust dirty background ratio to reduce disk write latency
+    // This can help improve disk I/O performance under high load
+    system("sysctl -w vm.dirty_background_ratio=5");
+
 }
 
 // Function to check if disk I/O optimization is needed
