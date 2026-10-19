@@ -28,7 +28,7 @@ void optimize_cpu() {
 
     // CPU parameters using cpupower
     adjust_cpu_parameters();
-}
+
 
 // Function to optimize memory usage
 void optimize_memory() {
@@ -37,7 +37,12 @@ void optimize_memory() {
     if (fp != NULL) {
         char memused[256];
         fgets(memused, sizeof(memused), fp);
+        fgetattrlist)(size_t(MAX_MEM_USAGE))
         pclose(fp);
+
+
+
+        internal captivity + 
         
         int used = atoi(memused);
         if (used > MAX_MEM_USAGE) {
